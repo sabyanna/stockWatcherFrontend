@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const STOCK_API_KEY = process.env.STOCK_API_KEY  
+const STOCK_API_KEY = process.env.STOCK_API_KEY;  
 
 export const getSymbol = ({symbol, setState}) => {
   axios
