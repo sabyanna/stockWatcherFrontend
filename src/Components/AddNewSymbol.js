@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TextField, Button } from '@material-ui/core';
-import { getSymbol } from '../Helpers/symbols'
+import { getSymbol } from '../Helpers/symbols';
+import { SymbloDataContext } from '../Contexts/SymbloDataContext'
 
-function AddNewSymbol() {
+const AddNewSymbol = () => {
   const [ symbol, setSymbol ] = useState('');
+  const context = useContext(SymbloDataContext)
+  
 
   const handleOnSend = () => {
-    getSymbol(symbol);
+    getSymbol({symbol, setState: context.setState});
   }
 
   const handleOnChangeSymbol = event => {
@@ -21,7 +24,7 @@ function AddNewSymbol() {
         value={ symbol }
         onChange={ handleOnChangeSymbol }
       />
-      <Button onClick={ handleOnSend }>Send</Button>
+      <Button onClick={ handleOnSend }>Show</Button>
     </>
   )
 }

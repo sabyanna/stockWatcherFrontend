@@ -1,13 +1,15 @@
 const axios = require('axios');
 
-export const getSymbol = symbol => {
+const STOCK_API_KEY = process.env.STOCK_API_KEY  
+
+export const getSymbol = ({symbol, setState}) => {
   axios
-    .get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=demo`, {
+    .get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${STOCK_API_KEY}`, {
       timeout: 5000
-    })
-    .then(res => {
+    }).then(res => {
       const { data } = res;
-      return data;
+
+      setState(data);
     })
     .catch(err => console.error(err));
 }
