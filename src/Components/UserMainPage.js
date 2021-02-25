@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import AddNewSymbol from './AddNewSymbol';
-import Chart from './Chart';
-import { SymbloDataContext } from '../Contexts/SymbloDataContext'
+import React, { useContext } from 'react';
+import AddNewSymbol from './FindSymbol/SearchForSymbol';
+import { SymbloDataContext } from '../Contexts/SymbloDataContext';
+import SymbolInfo from './FindSymbol/SymbolInfo';
 
 const UserMainPage = () => {
   const context = useContext(SymbloDataContext);
@@ -9,11 +9,11 @@ const UserMainPage = () => {
   return (
     <div>
       <AddNewSymbol/>
-      { context["Meta Data"] &&
-        <Chart></Chart>
+      { context['Meta Data'] &&
+        <SymbolInfo/>
       }
     </div>
-  )
-}
+  );
+};
 
-export default UserMainPage
+export default UserMainPage;

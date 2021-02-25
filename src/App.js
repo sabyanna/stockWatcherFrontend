@@ -1,6 +1,6 @@
 import './App.css';
-import UserMainPage from './Components/UserMainPage'
-import SymbloDataContextProvider from './Contexts/SymbloDataContext'
+import UserMainPage from './Components/UserMainPage';
+import SymbloDataContextProvider from './Contexts/SymbloDataContext';
 
 function App() {
   return (
