@@ -1,12 +1,18 @@
 import './App.css';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UserMainPage from './Components/UserMainPage';
+import Registration from './Components/Register/Registration';
 import SymbolDataContextProvider from './Contexts/SymbolDataContext';
 
 function App() {
   return (
     <div className="App">
       <SymbolDataContextProvider>
-        <UserMainPage/>
+        <Router>
+          <Route exact path="/registration" component={ Registration }/>
+          <Route exact path="/home" component={ UserMainPage }/>
+        </Router>
       </SymbolDataContextProvider>
     </div>
   );

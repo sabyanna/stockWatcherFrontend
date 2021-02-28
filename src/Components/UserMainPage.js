@@ -3,7 +3,7 @@ import AddNewSymbol from './FindSymbol/SearchForSymbol';
 import { SymbolDataContext } from '../Contexts/SymbolDataContext';
 import SymbolInfo from './FindSymbol/SymbolInfo';
 
-import { getUserSymbols } from '../Helpers/symbols';
+import { getUserSymbols } from '../Helpers/symbol';
 
 const UserMainPage = () => {
   const context = useContext(SymbolDataContext);

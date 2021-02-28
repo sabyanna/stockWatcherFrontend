@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { TextField, Button } from '@material-ui/core';
-import { getSymbol } from '../../Helpers/symbols';
+import { getSymbol } from '../../Helpers/symbol';
 import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 
 const SearchForSymbol = () => {
