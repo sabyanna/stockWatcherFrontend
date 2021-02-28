@@ -29,8 +29,23 @@ const SymbolDataContextProvider = ({ children }) => {
     });
   };
 
+  const resetState = () => {
+    setState({
+      newSymbol: {},
+      userSymbols: []
+    });
+  };
+
   return (
-    <SymbolDataContext.Provider value={ { ...state, setNewSymbol, setUserSymbols, addNewUserSymbol } }>
+    <SymbolDataContext.Provider
+      value={ {
+        ...state,
+        setNewSymbol,
+        setUserSymbols,
+        addNewUserSymbol,
+        resetState
+      } }
+    >
       { children }
     </SymbolDataContext.Provider>
   );

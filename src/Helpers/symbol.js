@@ -13,18 +13,19 @@ export const getSymbol = ({ symbol, setNewSymbol }) => {
   }).catch(err => console.error(err));
 };
 
-export const postSymbol = ({ symbol, addNewUserSymbol }) => {
+export const postSymbol = ({ symbol, addNewUserSymbol, userId }) => {
   const url = 'http://localhost:5000/';
 
-  axios.post(url, { symbol })
+  axios.post(url, { symbol, userId })
     .then(res => {
       const { data } = res;
       addNewUserSymbol(data);
     }).catch(err => console.error(err));
 };
 
-export const getUserSymbols = ({ setUserSymbols }) => {
-  const url = 'http://localhost:5000/';
+export const getUserSymbols = ({ setUserSymbols, userId }) => {
+  const url = `http://localhost:5000/${userId}`;
+
   axios.get(url, {
     timeout: 5000
   }).then(res => {
