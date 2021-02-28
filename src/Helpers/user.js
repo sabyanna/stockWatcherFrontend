@@ -1,23 +1,23 @@
 const axios = require('axios');
 
-export const register = userName => {
+export const register = async userName => {
   const url = 'http://localhost:5000/user/register';
 
-  axios.post(url, { userName })
-    .then(res => {
-      const { data: {
-        userName
-      } } = res;
-      localStorage.setItem('userName', userName);
-    }).catch(error => console.error(error));
+  try {
+    await axios.post(url, { userName });
+    localStorage.setItem('userName', userName);
+  } catch (error) {
+    throw error;
+  }
 };
 
-export const login = userName => {
+export const login = async userName => {
   const url = 'http://localhost:5000/user/login';
 
-  axios.post(url, { userName })
-    .then(res => {
-      console.log('DADASD', userName);
-      localStorage.setItem('userName', userName);
-    }).catch(err => console.error(err));
+  try {
+    await axios.post(url, { userName });
+    localStorage.setItem('userName', userName);
+  } catch (error) {
+    throw error;
+  }
 };

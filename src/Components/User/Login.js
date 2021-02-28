@@ -16,10 +16,16 @@ const Login = props => {
     setUserName(event.target.value);
   };
 
-  const handleOnSend = () => {
+  const handleOnSend = async () => {
     if (userName !== '') {
-      login(userName);
-    }
+      try {
+        await login(userName);
+
+        props.history.push('/home');
+      } catch (error) {
+        console.log(error);
+      }
+    };
   };
 
   return (

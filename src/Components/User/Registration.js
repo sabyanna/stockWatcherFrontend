@@ -12,12 +12,20 @@ const RegisterPage = props => {
   }, [props.history]);
 
   const handleOnChangeUserName = event => {
-    setUserName(event.target.value);
+    if (setUserName(event.target.value)) {
+      props.history.push('/home');
+    };
   };
 
-  const handleOnSend = () => {
+  const handleOnSend = async () => {
     if (userName !== '') {
-      register(userName);
+      try {
+        await register(userName);
+
+        props.history.push('/home');
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
