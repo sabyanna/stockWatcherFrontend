@@ -6,7 +6,7 @@ const RegisterPage = props => {
   const [ userName, setUserName ] = useState('');
 
   useEffect( () => {
-    if (localStorage.getItem('userName')) {
+    if (localStorage.getItem('userId')) {
       props.history.push('/home');
     }
   }, [props.history]);
