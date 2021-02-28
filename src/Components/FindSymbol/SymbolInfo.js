@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import { SymbloDataContext } from '../../Contexts/SymbloDataContext';
+import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 import { postSymbol } from '../../Helpers/symbols';
 import Chart from '../Chart';
 import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 
 const SymbolInfo = () => {
-  const symbolData = useContext(SymbloDataContext);
+  const context = useContext(SymbolDataContext);
 
-  const symbol = symbolData['Meta Data']['2. Symbol'];
+  const symbol = context.newSymbol['Meta Data']['2. Symbol'];
 
   const handleOnSend = () => {
-    postSymbol({ symbol });
+    postSymbol({ symbol, addNewUserSymbol: context.addNewUserSymbol });
   };
 
   return (
