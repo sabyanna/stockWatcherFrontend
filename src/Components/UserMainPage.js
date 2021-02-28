@@ -5,12 +5,18 @@ import SymbolInfo from './FindSymbol/SymbolInfo';
 
 import { getUserSymbols } from '../Helpers/symbol';
 
-const UserMainPage = () => {
+const UserMainPage = props => {
   const context = useContext(SymbolDataContext);
 
   useEffect(() => {
     getUserSymbols({ setUserSymbols: context.setUserSymbols });
   }, []);
+
+  useEffect( () => {
+    if (!localStorage.getItem('userName')) {
+      props.history.push('/login');
+    }
+  }, [props.history]);
 
   return (
     <div>
