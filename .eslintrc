@@ -7,9 +7,6 @@
     "global-require": "off",
     "linebreak-style": "off",
     "no-case-declarations": "off",
-    "no-unused-vars": [
-      "error"
-    ],
     "no-multiple-empty-lines": [
       "error",
       {

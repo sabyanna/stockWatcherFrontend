@@ -6,7 +6,6 @@ const Chart = () => {
   const symbolData = useContext(SymbloDataContext);
 
   const timeSeries = symbolData['Time Series (Daily)'];
-  // const metaData = symbolData['Meta Data'];
 
   const labels = Object.entries(timeSeries).map((key, value) => key[0]).reverse();
   const data = Object.entries(timeSeries).map((key, value) => key[1]['4. close']).reverse();
