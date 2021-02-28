@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Line } from 'react-chartjs-2';
-import { SymbloDataContext } from '../Contexts/SymbloDataContext';
+import { SymbolDataContext } from '../Contexts/SymbolDataContext';
 
 const Chart = () => {
-  const symbolData = useContext(SymbloDataContext);
+  const symbolData = useContext(SymbolDataContext);
+  const { newSymbol } = symbolData;
 
-  const timeSeries = symbolData['Time Series (Daily)'];
+  const timeSeries = newSymbol['Time Series (Daily)'];
 
   const labels = Object.entries(timeSeries).map((key, value) => key[0]).reverse();
   const data = Object.entries(timeSeries).map((key, value) => key[1]['4. close']).reverse();

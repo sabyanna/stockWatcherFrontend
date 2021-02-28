@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { getSymbol } from '../../Helpers/symbols';
-import { SymbloDataContext } from '../../Contexts/SymbloDataContext';
+import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 
 const SearchForSymbol = () => {
   const [ symbol, setSymbol ] = useState('');
-  const context = useContext(SymbloDataContext);
+  const context = useContext(SymbolDataContext);
 
   const handleOnShow = () => {
-    getSymbol({ symbol, setState: context.setState });
+    getSymbol({ symbol, setNewSymbol: context.setNewSymbol });
   };
 
   const handleOnChangeSymbol = event => {

@@ -1,13 +1,13 @@
 import './App.css';
 import UserMainPage from './Components/UserMainPage';
-import SymbloDataContextProvider from './Contexts/SymbloDataContext';
+import SymbolDataContextProvider from './Contexts/SymbolDataContext';
 
 function App() {
   return (
     <div className="App">
-      <SymbloDataContextProvider>
+      <SymbolDataContextProvider>
         <UserMainPage/>
-      </SymbloDataContextProvider>
+      </SymbolDataContextProvider>
     </div>
   );
 }

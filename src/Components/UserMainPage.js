@@ -1,15 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AddNewSymbol from './FindSymbol/SearchForSymbol';
-import { SymbloDataContext } from '../Contexts/SymbloDataContext';
+import { SymbolDataContext } from '../Contexts/SymbolDataContext';
 import SymbolInfo from './FindSymbol/SymbolInfo';
 
+import { getUserSymbols } from '../Helpers/symbols';
+
 const UserMainPage = () => {
-  const context = useContext(SymbloDataContext);
+  const context = useContext(SymbolDataContext);
+
+  useEffect(() => {
+    getUserSymbols({ setUserSymbols: context.setUserSymbols });
+  }, []);
 
   return (
     <div>
       <AddNewSymbol/>
-      { context['Meta Data'] &&
+      { context.newSymbol['Meta Data'] &&
         <SymbolInfo/>
       }
     </div>
