@@ -11,7 +11,7 @@ export const register = async userName => {
     } = await axios.post(url, { userName }) || {};
     localStorage.setItem('userId', userId);
   } catch (error) {
-    throw error;
+    throw new Error('Username not available');
   }
 };
 
@@ -25,8 +25,8 @@ export const login = async userName => {
       }
     } = await axios.post(url, { userName });
     localStorage.setItem('userId', userId);
-  } catch (error) {
-    throw error;
+  } catch {
+    throw new Error('Incorrect username');
   }
 };
 
