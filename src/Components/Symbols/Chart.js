@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Line } from 'react-chartjs-2';
-import { SymbolDataContext } from '../Contexts/SymbolDataContext';
+import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 
 const Chart = () => {
   const symbolData = useContext(SymbolDataContext);

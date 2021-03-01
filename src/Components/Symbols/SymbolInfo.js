@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 import { postSymbol } from '../../Helpers/symbol';
-import Chart from '../Chart';
+import Chart from './Chart';
 import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 
 const SymbolInfo = () => {

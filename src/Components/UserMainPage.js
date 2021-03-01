@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 
-import AddNewSymbol from './FindSymbol/SearchForSymbol';
+import { makeStyles } from '@material-ui/styles';
+
+import AddNewSymbol from './Symbols/SearchForSymbol';
 import { SymbolDataContext } from '../Contexts/SymbolDataContext';
-import SymbolInfo from './FindSymbol/SymbolInfo';
-import Logout from './User/Logout';
+import SymbolInfo from './Symbols/SymbolInfo';
+import Navbar from './Navbar/Navbar';
 
 import { getUserSymbols } from '../Helpers/symbol';
 
@@ -21,14 +23,24 @@ const UserMainPage = props => {
     }
   }, [props.history]);
 
+  const useStyles = makeStyles({
+    body: {
+      padding: '20px'
+    }
+  });
+
+  const classes = useStyles();
+
   return (
-    <div>
-      <Logout/>
-      <AddNewSymbol/>
-      { context.newSymbol['Meta Data'] &&
-        <SymbolInfo/>
-      }
-    </div>
+    <>
+      <Navbar/>
+      <div className={ classes.body }>
+        <AddNewSymbol/>
+        { context.newSymbol['Meta Data'] &&
+          <SymbolInfo/>
+        }
+      </div>
+    </>
   );
 };
 

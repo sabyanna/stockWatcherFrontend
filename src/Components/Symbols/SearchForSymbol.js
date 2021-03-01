@@ -23,7 +23,7 @@ const SearchForSymbol = () => {
         value={ symbol }
         onChange={ handleOnChangeSymbol }
       />
-      <Button onClick={ handleOnShow }>Show</Button>
+      <Button onClick={ handleOnShow }>Find</Button>
     </>
   );
 };
