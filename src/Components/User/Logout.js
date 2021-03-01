@@ -20,15 +20,13 @@ const Logout = props => {
   };
 
   return (
-    <div>
-      <Button
-        component={ Link }
-        to="/"
-        onClick={ handleLogout }
-      >
-        Logout
-      </Button>
-    </div>
+    <Button
+      component={ Link }
+      to="/"
+      onClick={ handleLogout }
+    >
+      Logout
+    </Button>
   );
 };
 
