@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 export const getSymbol = ({ symbol, setNewSymbol, userId }) => {
-  const url = `http://localhost:5000/user/${userId}/symbols/${ symbol }`;
+  const url = `http://localhost:5000/user/${userId}/symbols/${symbol}`;
   axios.get(url, {
     timeout: 5000
   }).then(res => {
@@ -14,10 +14,9 @@ export const getSymbol = ({ symbol, setNewSymbol, userId }) => {
 export const postSymbol = ({ symbol, addNewUserSymbol, userId }) => {
   const url = `http://localhost:5000/user/${userId}/symbols`;
 
-  axios.post(url, { symbol, userId })
+  axios.post(url, { symbol: symbol.name, userId })
     .then(res => {
-      const { data } = res;
-      addNewUserSymbol(data);
+      addNewUserSymbol(symbol);
     }).catch(err => console.error(err));
 };
 

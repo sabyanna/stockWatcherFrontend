@@ -4,12 +4,12 @@ import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 
 const Chart = () => {
   const symbolData = useContext(SymbolDataContext);
-  const { newSymbol } = symbolData;
+  const { newSymbol: {
+    timeSeries
+  } } = symbolData;
 
-  const timeSeries = newSymbol['Time Series (Daily)'];
-
-  const labels = Object.entries(timeSeries).map((key, value) => key[0]).reverse();
-  const data = Object.entries(timeSeries).map((key, value) => key[1]['4. close']).reverse();
+  const labels = timeSeries.map(data => data.date );
+  const data = timeSeries.map(data => data.close );
 
   const chartData = {
     labels,

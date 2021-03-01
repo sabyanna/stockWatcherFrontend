@@ -9,7 +9,7 @@ const SearchForSymbol = () => {
   const userId = localStorage.getItem('userId');
 
   const handleOnShow = () => {
-    getSymbol({ symbol, setNewSymbol: context.setNewSymbol, userId });
+    getSymbol({ symbol: symbol.toUpperCase(), setNewSymbol: context.setNewSymbol, userId });
   };
 
   const handleOnChangeSymbol = event => {

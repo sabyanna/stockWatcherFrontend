@@ -36,7 +36,7 @@ const UserMainPage = props => {
       <Navbar/>
       <div className={ classes.body }>
         <AddNewSymbol/>
-        { context.newSymbol['Meta Data'] &&
+        { context.newSymbol.name &&
           <SymbolInfo/>
         }
       </div>

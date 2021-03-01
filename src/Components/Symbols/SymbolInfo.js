@@ -10,8 +10,8 @@ const SymbolInfo = () => {
   const context = useContext(SymbolDataContext);
   const userId = localStorage.getItem('userId');
 
-  const symbol = context.newSymbol['Meta Data']['2. Symbol'].toUpperCase();
-  const isAddable = !context.userSymbols.find(userSymbol => userSymbol.name === symbol);
+  const symbol = context.newSymbol;
+  const isAddable = !context.userSymbols.find(userSymbol => userSymbol.name === symbol.name);
 
   const handleOnSend = () => {
     postSymbol({ symbol, addNewUserSymbol: context.addNewUserSymbol, userId });
@@ -31,7 +31,7 @@ const SymbolInfo = () => {
       <Card>
         <CardContent>
           <Typography variant="h4">
-            Symbol: { symbol }
+            Symbol: { symbol.name }
           </Typography>
         </CardContent>
         { isAddable &&
