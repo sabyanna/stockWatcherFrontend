@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Paper, TextField, Button } from '@material-ui/core';
 import { login } from '../../Helpers/user';
 import { Link } from 'react-router-dom';
+import { ErrorContext } from '../../Contexts/ErrorContext';
 
 const Login = props => {
+  const context = useContext(ErrorContext);
   const [ userName, setUserName ] = useState('');
 
   useEffect( () => {
@@ -19,11 +21,11 @@ const Login = props => {
   const handleOnSend = async () => {
     if (userName !== '') {
       try {
-        await login(userName);
+        await login({ userName });
 
         props.history.push('/home');
       } catch (error) {
-        console.log(error);
+        context.setError({ message: error.message });
       }
     };
   };

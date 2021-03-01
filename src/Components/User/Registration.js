@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Paper, TextField, Button } from '@material-ui/core';
 import { register } from '../../Helpers/user';
+import { ErrorContext } from '../../Contexts/ErrorContext';
 
 const RegisterPage = props => {
+  const context = useContext(ErrorContext);
   const [ userName, setUserName ] = useState('');
 
   useEffect( () => {
@@ -24,7 +26,7 @@ const RegisterPage = props => {
 
         props.history.push('/home');
       } catch (error) {
-        console.log(error);
+        context.setError({ message: error.message });
       }
     }
   };
