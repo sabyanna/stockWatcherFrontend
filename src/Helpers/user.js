@@ -23,7 +23,8 @@ export const login = async userName => {
       data: {
         userId
       }
-    } = await axios.post(url, { userName });
+    } = await axios.post(url, userName);
+
     localStorage.setItem('userId', userId);
   } catch {
     throw new Error('Incorrect username');

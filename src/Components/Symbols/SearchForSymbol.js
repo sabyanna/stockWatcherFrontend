@@ -6,9 +6,10 @@ import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 const SearchForSymbol = () => {
   const [ symbol, setSymbol ] = useState('');
   const context = useContext(SymbolDataContext);
+  const userId = localStorage.getItem('userId');
 
   const handleOnShow = () => {
-    getSymbol({ symbol, setNewSymbol: context.setNewSymbol });
+    getSymbol({ symbol, setNewSymbol: context.setNewSymbol, userId });
   };
 
   const handleOnChangeSymbol = event => {
