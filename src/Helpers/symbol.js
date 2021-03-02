@@ -1,8 +1,8 @@
-const axios = require('axios');
+import axiosService from '../config/axios.config';
 
 export const getNewSymbol = ({ symbol, setNewSymbol, userId }) => {
-  const url = `http://localhost:5000/user/${userId}/symbols/${symbol}`;
-  axios.get(url, {
+  const url = `/user/${userId}/symbols/${symbol}`;
+  axiosService.get(url, {
     timeout: 5000
   }).then(res => {
     const { data } = res;
@@ -11,9 +11,9 @@ export const getNewSymbol = ({ symbol, setNewSymbol, userId }) => {
   }).catch(err => console.error(err));
 };
 
-export const getSymbol = async ({ symbolName, userId, updateUserSymbol }) => {
-  const url = `http://localhost:5000/user/${userId}/symbols/${symbolName}`;
-  axios.get(url, {
+export const getSymbol = ({ symbolName, userId, updateUserSymbol }) => {
+  const url = `/user/${userId}/symbols/${symbolName}`;
+  axiosService.get(url, {
     timeout: 5000
   }).then(res => {
     const { data: { timeSeries } } = res;
@@ -23,9 +23,9 @@ export const getSymbol = async ({ symbolName, userId, updateUserSymbol }) => {
 };
 
 export const postSymbol = ({ symbol, addNewUserSymbol, userId }) => {
-  const url = `http://localhost:5000/user/${userId}/symbols`;
+  const url = `/user/${userId}/symbols`;
 
-  axios.post(url, { symbol: symbol.name, userId })
+  axiosService.post(url, { symbol: symbol.name, userId })
     .then(res => {
       const { data } = res;
 
@@ -34,9 +34,9 @@ export const postSymbol = ({ symbol, addNewUserSymbol, userId }) => {
 };
 
 export const getUserSymbols = ({ setUserSymbols, userId }) => {
-  const url = `http://localhost:5000/user/${userId}/symbols`;
+  const url = `/user/${userId}/symbols`;
 
-  axios.get(url, {
+  axiosService.get(url, {
     timeout: 10000
   }).then(res => {
     const { data } = res;

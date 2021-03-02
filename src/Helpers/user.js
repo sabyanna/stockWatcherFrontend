@@ -1,14 +1,14 @@
-const axios = require('axios');
+import axiosService from '../config/axios.config';
 
 export const register = async userName => {
-  const url = 'http://localhost:5000/user/register';
+  const url = '/user/register';
 
   try {
     const {
       data: {
         userId
       }
-    } = await axios.post(url, { userName }) || {};
+    } = await axiosService.post(url, { userName }) || {};
     localStorage.setItem('userId', userId);
   } catch (error) {
     throw new Error('Username not available');
@@ -16,14 +16,14 @@ export const register = async userName => {
 };
 
 export const login = async userName => {
-  const url = 'http://localhost:5000/user/login';
+  const url = '/user/login';
 
   try {
     const {
       data: {
         userId
       }
-    } = await axios.post(url, userName);
+    } = await axiosService.post(url, userName);
 
     localStorage.setItem('userId', userId);
   } catch {
