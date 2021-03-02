@@ -1,14 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { TextField, Button } from '@material-ui/core';
-import { getSymbol } from '../../Helpers/symbol';
+import { getNewSymbol } from '../../Helpers/symbol';
 import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 
 const SearchForSymbol = () => {
   const [ symbol, setSymbol ] = useState('');
   const context = useContext(SymbolDataContext);
+  const userId = localStorage.getItem('userId');
 
   const handleOnShow = () => {
-    getSymbol({ symbol, setNewSymbol: context.setNewSymbol });
+    getNewSymbol({
+      symbol: symbol.toUpperCase(),
+      setNewSymbol: context.setNewSymbol,
+      userId
+    });
   };
 
   const handleOnChangeSymbol = event => {
@@ -23,7 +28,7 @@ const SearchForSymbol = () => {
         value={ symbol }
         onChange={ handleOnChangeSymbol }
       />
-      <Button onClick={ handleOnShow }>Show</Button>
+      <Button onClick={ handleOnShow }>Find</Button>
     </>
   );
 };
