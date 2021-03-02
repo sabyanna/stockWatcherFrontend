@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
@@ -9,13 +9,22 @@ import Chart from './Chart';
 const SymbolInfo = () => {
   const symbolData = useContext(SymbolDataContext);
   const userId = localStorage.getItem('userId');
+  const [ showChart, setShowChart ] = useState(true);
 
   const { newSymbol, userSymbols } = symbolData;
 
   const isAddable = !userSymbols.find(userSymbol => userSymbol.name === newSymbol.name);
 
   const handleOnSend = () => {
-    postSymbol({ symbol: newSymbol, addNewUserSymbol: symbolData.addNewUserSymbol, userId });
+    postSymbol({
+      symbol: newSymbol,
+      addNewUserSymbol: symbolData.addNewUserSymbol,
+      userId
+    });
+  };
+
+  const handleOnShow = () => {
+    setShowChart(!showChart);
   };
 
   const useStyles = makeStyles({
@@ -48,7 +57,10 @@ const SymbolInfo = () => {
           </CardActions>
         }
       </Card>
-      <Chart timeSeries={ newSymbol.timeSeries }/>
+      <Button onClick={ handleOnShow }>{ showChart ? 'Hide' : 'Show ' }</Button>
+      { showChart &&
+        <Chart timeSeries={ newSymbol.timeSeries }/>
+      }
     </>
   );
 };
