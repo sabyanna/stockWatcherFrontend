@@ -36,6 +36,22 @@ const SymbolDataContextProvider = ({ children }) => {
     });
   };
 
+  const updateUserSymbol = (symbolName, timeSeries) => {
+    const symbolToUpdateIndex = state.userSymbols.findIndex(symbol => symbol.name === symbolName);
+    const symbolToUpdate = state.userSymbols[symbolToUpdateIndex];
+    setState({
+      ...state,
+      userSymbols: [
+        ...state.userSymbols.slice(0, symbolToUpdateIndex),
+        {
+          ...symbolToUpdate,
+          timeSeries
+        },
+        ...state.userSymbols.slice(symbolToUpdateIndex + 1, state.userSymbols.length)
+      ]
+    });
+  };
+
   return (
     <SymbolDataContext.Provider
       value={ {
@@ -43,7 +59,8 @@ const SymbolDataContextProvider = ({ children }) => {
         setNewSymbol,
         setUserSymbols,
         addNewUserSymbol,
-        resetState
+        resetState,
+        updateUserSymbol
       } }
     >
       { children }

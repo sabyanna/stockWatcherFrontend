@@ -1,34 +1,54 @@
 import React, { useContext } from 'react';
+
+import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import { SymbolDataContext } from '../../Contexts/SymbolDataContext';
 import { postSymbol } from '../../Helpers/symbol';
 import Chart from './Chart';
-import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 
 const SymbolInfo = () => {
-  const context = useContext(SymbolDataContext);
+  const symbolData = useContext(SymbolDataContext);
   const userId = localStorage.getItem('userId');
 
-  const symbol = context.newSymbol['Meta Data']['2. Symbol'];
+  const { newSymbol, userSymbols } = symbolData;
+
+  const isAddable = !userSymbols.find(userSymbol => userSymbol.name === newSymbol.name);
 
   const handleOnSend = () => {
-    postSymbol({ symbol, addNewUserSymbol: context.addNewUserSymbol, userId });
+    postSymbol({ symbol: newSymbol, addNewUserSymbol: symbolData.addNewUserSymbol, userId });
   };
+
+  const useStyles = makeStyles({
+    addBtn: {
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
+  });
+
+  const classes = useStyles();
 
   return (
     <>
       <Card>
         <CardContent>
           <Typography variant="h4">
-            Symbol: { symbol }
+            Symbol: { newSymbol.name }
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary" onClick={ handleOnSend }>
-            Add
-          </Button>
-        </CardActions>
+        { isAddable &&
+          <CardActions>
+            <Button
+              size="small"
+              color="primary"
+              onClick={ handleOnSend }
+              className={ classes.addBtn }
+            >
+              Add
+            </Button>
+          </CardActions>
+        }
       </Card>
-      <Chart/>
+      <Chart timeSeries={ newSymbol.timeSeries }/>
     </>
   );
 };
