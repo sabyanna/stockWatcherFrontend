@@ -7,14 +7,15 @@ import { postSymbol } from '../../Helpers/symbol';
 import Chart from './Chart';
 
 const SymbolInfo = () => {
-  const context = useContext(SymbolDataContext);
+  const symbolData = useContext(SymbolDataContext);
   const userId = localStorage.getItem('userId');
 
-  const symbol = context.newSymbol;
-  const isAddable = !context.userSymbols.find(userSymbol => userSymbol.name === symbol.name);
+  const { newSymbol, userSymbols } = symbolData;
+
+  const isAddable = !userSymbols.find(userSymbol => userSymbol.name === newSymbol.name);
 
   const handleOnSend = () => {
-    postSymbol({ symbol, addNewUserSymbol: context.addNewUserSymbol, userId });
+    postSymbol({ symbol: newSymbol, addNewUserSymbol: symbolData.addNewUserSymbol, userId });
   };
 
   const useStyles = makeStyles({
@@ -31,7 +32,7 @@ const SymbolInfo = () => {
       <Card>
         <CardContent>
           <Typography variant="h4">
-            Symbol: { symbol.name }
+            Symbol: { newSymbol.name }
           </Typography>
         </CardContent>
         { isAddable &&
@@ -47,7 +48,7 @@ const SymbolInfo = () => {
           </CardActions>
         }
       </Card>
-      <Chart/>
+      <Chart timeSeries={ newSymbol.timeSeries }/>
     </>
   );
 };

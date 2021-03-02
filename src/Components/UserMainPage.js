@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import AddNewSymbol from './Symbols/SearchForSymbol';
 import { SymbolDataContext } from '../Contexts/SymbolDataContext';
 import SymbolInfo from './Symbols/SymbolInfo';
+import MySymbolsTable from './Symbols/MySymbolsTable';
 import Navbar from './Navbar/Navbar';
 
 import { getUserSymbols } from '../Helpers/symbol';
@@ -39,6 +40,7 @@ const UserMainPage = props => {
         { context.newSymbol.name &&
           <SymbolInfo/>
         }
+        <MySymbolsTable/>
       </div>
     </>
   );
